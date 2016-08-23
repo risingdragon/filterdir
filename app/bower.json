@@ -1,0 +1,21 @@
+{
+  "name": "savetree",
+  "description": "save tree",
+  "main": "dist/main/index.js",
+  "authors": [
+    "Y.Hasegawa <ysk.longriver@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "2.0.3"
+  }
+}

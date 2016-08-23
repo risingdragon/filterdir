@@ -1,0 +1,9 @@
+{
+  "name": "filterdir",
+  "version": "1.0.0",
+  "description": "filter directories and save to zip file",
+  "main": "dist/main/index.js",
+  "author": "Y.Hasegawa",
+  "license": "ISC",
+  "dependencies": {}
+}
