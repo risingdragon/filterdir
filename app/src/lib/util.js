@@ -28,40 +28,4 @@ module.exports = class Util {
 			$('#wait').stop().fadeOut(2000)
 		}
 	}
-
-	static findDir(dir, filter, list = []) {
-		let files = fs.readdirSync(dir)
-		for (let file of files) {
-			let path = dir + '/' + file
-
-			let stat = fs.lstatSync(path)
-			if (stat.isDirectory() == false) {
-				continue
-			}
-
-			if (file == filter) {
-				list.push(path)
-				continue
-			}
-
-			list.concat(Util.findDir(path, filter, list))
-		}
-
-		return list
-	}
-
-	static saveTree(dirs, topdir, savefile, callback) {
-		let zip = new Archiver('zip', {})
-		let out = fs.createWriteStream(savefile)
-		zip.pipe(out)
-		out.on('close', () => {
-			callback()
-		})
-
-		for (let dir of dirs) {
-			zip.directory(dir, dir.substr(topdir.length + 1))
-		}
-
-		zip.finalize()
-	}
 }

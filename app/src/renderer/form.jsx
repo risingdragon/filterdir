@@ -38,8 +38,6 @@ module.exports = class Form extends React.Component {
 			return
 		}
 
-		Util.showMessage('圧縮しています', 'alert-warning', false)
-
 		this.state.topdir = topdir
 		this.state.filter = filter
 		this.setState(this.state)

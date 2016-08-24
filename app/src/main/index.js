@@ -1,6 +1,7 @@
 const electron = require('electron')
 const fs = require('fs')
 const Util = require('../lib/util');
+const Filter = require('../lib/filter');
 
 let win = null
 let winSize = null
@@ -53,7 +54,7 @@ electron.app.on('ready', () => {
 	})
 })
 
-electron.ipcMain.on('save', (e, path, filter) => {
+electron.ipcMain.on('save', (e, path, filterDir) => {
 	electron.dialog.showSaveDialog(
 		win,
 		{
@@ -68,9 +69,11 @@ electron.ipcMain.on('save', (e, path, filter) => {
 				e.sender.send('show-message', '中断しました', 'alert-danger')
 				return
 			}
-			let dirs = Util.findDir(path, filter)
-			Util.saveTree(dirs, path, file, () => {
-				e.sender.send('show-message', '圧縮が完了しました', 'alert-success')
+
+			e.sender.send('show-message', '対象ディレクトリを検索中', 'alert-warning', false)
+
+			let dirs = Filter.save(path, filterDir, file, e.sender, () => {
+				e.sender.send('show-message', '完了しました', 'alert-success')
 			})
 		}
 	)
