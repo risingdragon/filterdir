@@ -5,7 +5,7 @@ const Filter = require('../lib/filter');
 
 let win = null
 let winSize = null
-let settingFile = electron.app.getAppPath() + '/settings.json'
+let settingFile = electron.app.getPath('userData') + '/settings.json'
 
 electron.app.on('window-all-closed', () => {
 	if (process.platform != 'darwin') {
